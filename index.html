@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify - Web Player: Music for everyone</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="utility.css">
+</head>
+
+<body>
+    <div class="container flex bg-black">
+
+        <div class="left">
+
+            <div class="close invert">
+                <img src="/Images/Svg's/close.svg" alt="">
+            </div>
+            <div class="home bg-grey rounded m-1 p-1">
+                <div class="logo"> <img class="invert" src="/Images/Svg's/logo.svg" alt=""></div>
+                <ul>
+                    <li><img class="invert" src="/Images/Svg's/home.svg" alt="home">Home</li>
+                    <li><img class="invert" src="/Images/Svg's/search.svg" alt="search">Search</li>
+                </ul>
+            </div>
+
+            <div class="library bg-grey rounded m-1 p-1">
+                <div class="heading">
+                    <img class="invert" src="/Images/Svg's/playlist.svg" alt="">
+                    <h2>
+                        Your Library
+                    </h2>
+                </div>
+
+                <div class="songslist">
+                    <ul>
+                        <!-- <li>
+                            <img class="invert" src="music.svg" alt="">
+                            <div class="info">
+                                <div>Song Name</div>
+                                <div>Sont Artist</div>
+                            </div>
+                            <div class="playnow">
+                                <span>Play Now</span>
+                                <img class="invert" src="play.svg" alt="">
+                            </div>
+                        </li> -->
+                    </ul>
+                </div>
+
+                <div class="footer">
+                    <div><a href="https://www.spotify.com/jp/legal/"><span>Legal</span></a></div>
+                    <div><a href="https://www.spotify.com/jp/privacy/"><span>Privacy Center</span></a></div>
+                    <div><a href="https://www.spotify.com/jp/legal/privacy-policy/"><span>Privacy Policy</span></a>
+                    </div>
+                    <div><a href="https://www.spotify.com/jp/legal/cookies-policy/"><span>Cookies</span></a></div>
+                    <div><a href="https://www.spotify.com/jp/legal/privacy-policy/#s3"><span>About Ads</span></a></div>
+                    <div><a href="https://www.spotify.com/jp/accessibility/"><span>Accessibility</span></a></div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="right bg-grey">
+
+            <div class="header">
+                <div class="nav">
+                    <div class="hamburgerContainer">
+                        <img width="40px" class="invert hamburger" src="/Images/Svg's/hamburger.svg" alt="">
+                        <svg class="nav-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M15 6L9.70711 11.2929C9.37377 11.6262 9.20711 11.7929 9.20711 12C9.20711 12.2071 9.37377 12.3738 9.70711 12.7071L15 18"
+                                stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+
+                        <svg class="nav-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M9 18L14.2929 12.7071C14.6262 12.3738 14.7929 12.2071 14.7929 12C14.7929 11.7929 14.6262 11.6262 14.2929 11.2929L9 6"
+                                stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+
+                </div>
+                <div class="buttons">
+                    <button class="signup-btn">Sign up</button>
+                    <button class="login-btn">Log in</button>
+                </div>
+            </div>
+
+            <div class="spotifyPlaylist">
+                <h1 class="page-title glow-heading">Spotify Playlist</h1>
+                <div class="cardContainer">
+
+                    <!-- <div data-folder="cs" class="card">
+                        <div class="play">
+                            <svg width="18" height="18" viewBox="-1 0.5 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 20V4L19 12L5 20Z" fill="#000" stroke-width="1.5" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <img src="/КАМИН.png" alt="">
+                        <h2>Камин</h2>
+                        <p>EMIN, JONY</p>
+                    </div>
+
+                    <div data-folder="ncs" class="card">
+                        <div class="play">
+                            <svg width="18" height="18" viewBox="-1 0.5 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 20V4L19 12L5 20Z" fill="#000" stroke-width="1.5" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <img src="/Belki.png" alt="">
+                        <h2>Belki</h2>
+                        <p>Dedublüman, Mavzer Tabancas</p>
+                    </div>
+                    <div class="card">
+                        <div class="play">
+                            <svg width="18" height="18" viewBox="-1 0.5 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 20V4L19 12L5 20Z" fill="#000" stroke-width="1.5" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <img src="/Broken Angel.png" alt="">
+                        <h2>Broken Angel - Slowed + Reverb</h2>
+                        <p>Arash, Helena</p>
+                    </div>
+                    <div class="card">
+                        <div class="play">
+                            <svg width="18" height="18" viewBox="-1 0.5 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 20V4L19 12L5 20Z" fill="#000" stroke-width="1.5" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <img src="/Funk Mi Camino.png" alt="">
+                        <h2>FUNK MI CAMINO - Slowed</h2>
+                        <p>Sayfalse, Junior RCE</p>
+                    </div>
+                    <div class="card">
+                        <div class="play">
+                            <svg width="18" height="18" viewBox="-1 0.5 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 20V4L19 12L5 20Z" fill="#000" stroke-width="1.5" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <img src="/2 Phut Hon Funk.jpg" alt="">
+                        <h2>2 PHUT HON FUNK - Slowed + Reverb</h2>
+                        <p>OBL1VX</p>
+                    </div>
+                    <div class="card">
+                        <div class="play">
+                            <svg width="18" height="18" viewBox="-1 0.5 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 20V4L19 12L5 20Z" fill="#000" stroke-width="1.5" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <img src="/Passo Bem Solto.jpg" alt="">
+                        <h2>PASSO BEM SOLTO - Ultra Slowed</h2>
+                        <p>ATLXS</p>
+                    </div>
+                    <div class="card">
+                        <div class="play">
+                            <svg width="18" height="18" viewBox="-1 0.5 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 20V4L19 12L5 20Z" fill="#000" stroke-width="1.5" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <img src="/Funk Universo.jpg" alt="">
+                        <h2>FUNK UNIVERSO</h2>
+                        <p>Irokz</p>
+                    </div>
+                    <div class="card">
+                        <div class="play">
+                            <svg width="18" height="18" viewBox="-1 0.5 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 20V4L19 12L5 20Z" fill="#000" stroke-width="1.5" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <img src="/Luna Bala.jpeg" alt="">
+                        <h2>LUNA BALA - Extreme Slowed</h2>
+                        <p>Yb Wasg'ood, Ariis</p>
+                    </div>
+                    <div class="card">
+                        <div class="play">
+                            <svg width="18" height="18" viewBox="-1 0.5 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 20V4L19 12L5 20Z" fill="#000" stroke-width="1.5" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <img src="/Slava Funk.jpeg" alt="">
+                        <h2>SLAVA FUNK! - Slowed</h2>
+                        <p>MVSTERIOUS, Hxmr, yngastrobeatz., EVO</p>
+                    </div> -->
+
+
+
+
+                </div>
+
+
+                <div class="playbar">
+                    <div class="seekbar rainbow-line">
+                        <div class="circle">
+
+                        </div>
+                    </div>
+
+                    <div class="abovebar">
+
+                        <div class="songinfo"></div>
+
+                        <div class="songbuttons">
+                            <img id="previous" src="/Images/Svg's/prevsong.svg" alt="">
+                            <img id="play" src="/Images/Svg's/play.svg" alt="">
+                            <img id="next" src="/Images/Svg's/nextsong.svg" alt="">
+                        </div>
+
+                        <div class="songtime"></div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
