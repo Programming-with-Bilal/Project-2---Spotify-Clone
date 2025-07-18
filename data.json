@@ -1,0 +1,19 @@
+{
+  "albums": [
+    {
+      "folder": "cs",
+      "title": "Sad Songs",
+      "description": "A collection of emotional and heartfelt tracks for quiet moments."
+    },
+    {
+      "folder": "Nasheed",
+      "title": "Nasheed",
+      "description": "Calm energy connected to faith."
+    },
+    {
+      "folder": "ncs",
+      "title": "Phonk",
+      "description": "Drift inside the aura of raw energy"
+    }
+  ]
+}
