@@ -1,4 +1,30 @@
 {
-    "title" : "Nasheed",
-    "description": "Calm energy connected to faith."
+  "title": "Nasheed",
+  "description": "Calm energy connected to faith.",
+  "songs": [
+    {
+      "filename": "KUN ANTA (كن أنت).mp3",
+      "name": "KUN ANTA"
+    },
+    {
+      "filename": "Sabeel ud Dumu.mp3",
+      "name": "Sabeel ud Dumu"
+    },
+    {
+      "filename": "Taweel Al Shawq.mp3",
+      "name": "Taweel Al Shawq"
+    },
+    {
+      "filename": "Wedding Nasheed.mp3",
+      "name": "Wedding Nasheed"
+    },
+    {
+      "filename": "Wonder Where You Are.mp3",
+      "name": "Wonder Where You Are"
+    },
+    {
+      "filename": "Ya Quluban.mp3",
+      "name": "Ya Quluban"
+    }
+  ]
 }
