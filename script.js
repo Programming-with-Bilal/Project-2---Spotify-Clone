@@ -20,7 +20,7 @@ async function getSongs(folder) {
     currFolder = folder;
     let a;
     try {
-        a = await fetch(`/${folder}/`);
+        a = await fetch(`${folder}/`);
         if (!a.ok) throw new Error("Fetch failed for folder");
     } catch (err) {
         console.error("Error fetching songs folder:", err);
@@ -45,12 +45,12 @@ async function getSongs(folder) {
     let songsUL = document.querySelector(".songslist").getElementsByTagName("ul")[0]
     songsUL.innerHTML = ""
     for (const song of songs) {
-        songsUL.innerHTML = songsUL.innerHTML + `<li><img class="invert" src="/Images/Svg's/music.svg" alt="">
+        songsUL.innerHTML = songsUL.innerHTML + `<li><img class="invert" src="Images/Svg's/music.svg" alt="">
                             <div class="info">
                                 <div class="multicolor-text" >${decodeURIComponent(song.replace(".mp3", ""))}</div>
                             </div>
 
-                                <img class="invert" src="/Images/Svg's/play.svg" alt="">
+                                <img class="invert" src="Images/Svg's/play.svg" alt="">
  </li>`;
     }
 
@@ -68,11 +68,11 @@ async function getSongs(folder) {
 }
 
 const playMusic = (track, pause = false) => {
-    currentSong.src = `/${currFolder}/` + track;
+    currentSong.src = `${currFolder}/` + track;
 
     if (!pause) {
         currentSong.play().then(() => {
-            play.src = "/Images/Svg's/pause.svg";
+            play.src = "Images/Svg's/pause.svg";
         }).catch(error => {
             // Suppress the AbortError or log it if needed :
             if (error.name !== "AbortError") {
@@ -89,7 +89,7 @@ const playMusic = (track, pause = false) => {
 async function displayAlbums() {
     let a;
     try {
-        a = await fetch(`/songs/`);
+        a = await fetch(`songs/`);
         if (!a.ok) throw new Error("Fetch failed for /songs/");
     } catch (err) {
         console.error("Error fetching album root folder:", err);
@@ -113,7 +113,7 @@ async function displayAlbums() {
 
             let a;
             try {
-                a = await fetch(`/songs/${folder}/info.json`);
+                a = await fetch(`songs/${folder}/info.json`);
                 if (!a.ok) throw new Error("Missing info.json");
             } catch (err) {
                 console.warn(`Skipping album "${folder}":`, err);
@@ -129,7 +129,7 @@ async function displayAlbums() {
                                 <path d="M5 20V4L19 12L5 20Z" fill="#000" stroke-width="1.5" stroke-linejoin="round" />
                             </svg>
                         </div>
-                        <img src="/songs/${folder}/cover.jpg" alt="">
+                        <img src="songs/${folder}/cover.jpg" alt="">
                         <h2>${response.title}</h2>
                         <p>${response.description}</p>
                     </div>`
@@ -172,11 +172,11 @@ async function main() {
     play.addEventListener("click", () => {
         if (currentSong.paused) {
             currentSong.play()
-            play.src = "/Images/Svg's/pause.svg"
+            play.src = "Images/Svg's/pause.svg"
         }
         else {
             currentSong.pause()
-            play.src = "/Images/Svg's/play.svg"
+            play.src = "Images/Svg's/play.svg"
         }
     })
 
