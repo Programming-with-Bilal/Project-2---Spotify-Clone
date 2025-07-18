@@ -1,4 +1,30 @@
 {
-    "title" : "Phonk",
-    "description": "Drift inside the aura of raw energy."
+  "title": "Phonk",
+  "description": "Drift inside the aura of raw energy.",
+  "songs": [
+    {
+      "filename": "2 Phut Hon Funk.mp3",
+      "name": "2 Phut Hon Funk"
+    },
+    {
+      "filename": "FUNK MI CAMINO.mp3",
+      "name": "FUNK MI CAMINO"
+    },
+    {
+      "filename": "FUNK UNIVERSO.mp3",
+      "name": "FUNK UNIVERSO"
+    },
+    {
+      "filename": "LUNA BALA.mp3",
+      "name": "LUNA BALA"
+    },
+    {
+      "filename": "PASSO BEM SOLTO.mp3",
+      "name": "PASSO BEM SOLTO"
+    },
+    {
+      "filename": "SLAVA FUNK!.mp3",
+      "name": "SLAVA FUNK!"
+    }
+  ]
 }
