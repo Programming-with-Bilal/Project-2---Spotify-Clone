@@ -1,4 +1,38 @@
 {
-    "title" : "Sad",
-    "description": "A collection of emotional and heartfelt tracks for quiet moments."
+  "title": "Sad",
+  "description": "A collection of emotional and heartfelt tracks for quiet moments.",
+  "songs": [
+    {
+      "filename": "Belki.mp3",
+      "name": "Belki"
+    },
+    {
+      "filename": "Broken Angel.mp3",
+      "name": "Broken Angel"
+    },
+    {
+      "filename": "Dil Ibaadat.mp3",
+      "name": "Dil Ibaadat"
+    },
+    {
+      "filename": "Jo Tum Mere Ho.mp3",
+      "name": "Jo Tum Mere Ho"
+    },
+    {
+      "filename": "Labon Ko.mp3",
+      "name": "Labon Ko"
+    },
+    {
+      "filename": "Maula Mere Maula.mp3",
+      "name": "Maula Mere Maula"
+    },
+    {
+      "filename": "Tum Hi Ho.mp3",
+      "name": "Tum Hi Ho"
+    },
+    {
+      "filename": "КАМИН.mp3",
+      "name": "КАМИН"
+    }
+  ]
 }
