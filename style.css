@@ -75,8 +75,8 @@ body {
     gap: 10px;
     position: absolute;
     bottom: 0;
-    flex-wrap: wrap;
     /* Allows items to wrap to next line */
+    flex-wrap: wrap;
     padding: 10px;
 }
 
@@ -94,7 +94,6 @@ body {
     margin-top: 15px;
     margin-right: 10px;
     margin-left: 10px;
-
     border-radius: 7px;
     /* Ensures child elements respect the radius : */
     overflow: hidden;
@@ -108,7 +107,6 @@ body {
 
 /* choosing all direct childs of the header : */
 .header>* {
-    /* padding: 16px; */
     padding: 12px;
 }
 
@@ -536,7 +534,6 @@ body {
     font-weight: bold;
     margin-left: 20px;
     white-space: nowrap;
-    /* overflow: hidden; */
     text-overflow: ellipsis;
 }
 
@@ -565,7 +562,6 @@ body {
         width: 320px;
         height: 100vh;
         background-color: black;
-        /* margin-left: 0; */
         padding: 0;
     }
 
@@ -654,22 +650,23 @@ body {
     body {
         margin: 0;
         padding: 0;
+        /* Remove horizontal scroll bar */
         overflow-x: hidden;
-        /* 💥 Remove horizontal scroll bar */
     }
 
     .cardContainer {
         display: flex;
         flex-direction: row;
         overflow-y: scroll;
-        overflow-x: hidden;
         /* Prevent horizontal scroll */
+        overflow-x: hidden;
         height: 100vh;
         padding: 16px;
         /* Add some padding if needed */
         box-sizing: border-box;
         /* Center cards horizontally */
         align-items: center;
+        padding-bottom: 80px;
     }
 
     .card {
