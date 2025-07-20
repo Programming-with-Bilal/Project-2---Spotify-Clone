@@ -19,7 +19,7 @@ function secondsToMinutesSeconds(seconds) {
     return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
 }
 
-/**
+/*
  * Fetches and displays songs from a specified folder
  * @param {string} folder - Path to folder containing songs
  * @returns {Promise} Promise resolving to songs array
@@ -27,7 +27,7 @@ function secondsToMinutesSeconds(seconds) {
 async function getSongs(folder) {
     currFolder = folder;
     try {
-        // Fetch song metadata from info.json
+        // Fetch song metadata from info.json :
         const a = await fetch(`${folder}/info.json`);
         if (!a.ok) throw new Error(`Failed to load info.json for ${folder}`);
         const response = await a.json();
@@ -94,10 +94,11 @@ async function displayAlbums() {
     let albumsData;
     try {
         // Fetch album data
-        const a = await fetch(`/data.json`);
+        const a = await fetch(`data.json`);
         if (!a.ok) throw new Error("Failed to load album data.json");
         albumsData = await a.json();
     } catch (err) {
+        alert("Could not load albums: " + err.message);
         console.error("Error loading albums:", err);
         return;
     }
