@@ -3,9 +3,35 @@ let currentSong = new Audio(); // Audio object for current playing song
 let songs = []; // Array to store song data for current playlist
 let currFolder; // Current folder path containing songs
 let currentSongIndex = 0; // Index of currently playing song in songs array
+let currentlyPlayingLi = null;
+
+function createWaveAnimation() {
+    return `<div class="wave-animation">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div>
+    </div>`;
+}
+
+function updatePlayIcons() {
+    document.querySelectorAll(".songslist ul li").forEach((item, index) => {
+        const playIcon = item.querySelector("img:last-child");
+        const waveAnim = item.querySelector(".wave-animation");
+
+        // Always clean up first
+        if (waveAnim) waveAnim.remove();
+        // playIcon.style.display = "block";
+        if (playIcon) playIcon.style.display = "block";
+
+        // Only show wave for currently playing AND not paused
+        if (index === currentSongIndex && !currentSong.paused) {
+            playIcon.style.display = "none";
+            item.insertAdjacentHTML("beforeend", createWaveAnimation());
+        }
+    });
+}
 
 /**
- * Converts seconds to MM:SS format
+ * Converts seconds to MM:SS format :
  * @param {number} seconds - Duration in seconds
  * @returns {string} Formatted time string (MM:SS)
  */
@@ -19,7 +45,7 @@ function secondsToMinutesSeconds(seconds) {
     return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
 }
 
-/*
+/**
  * Fetches and displays songs from a specified folder
  * @param {string} folder - Path to folder containing songs
  * @returns {Promise} Promise resolving to songs array
@@ -68,21 +94,52 @@ async function getSongs(folder) {
  * @param {boolean} pause - Whether to start paused
  * @param {number} index - Index of song in songs array
  */
-const playMusic = (track, pause = false, index = null) => {
-    currentSong.src = `${currFolder}/` + track;
-    if (index !== null) currentSongIndex = index; // Update current index
 
-    if (!pause) {
-        currentSong.play().then(() => {
-            // Update play button to pause icon
-            play.src = "Images/Svg's/pause.svg";
-        }).catch(error => {
-            // Log errors except AbortError (common during rapid track changes)
-            if (error.name !== "AbortError") console.error("Play error:", error);
-        });
+let currentPlayPromise = null; // track latest play() call
+
+const playMusic = async (track, pause = false, index = null) => {
+    if (currentlyPlayingLi) {
+        const prevPlayIcon = currentlyPlayingLi.querySelector("img:last-child");
+        const waveAnim = currentlyPlayingLi.querySelector(".wave-animation");
+        if (waveAnim) waveAnim.remove();
+        if (prevPlayIcon) prevPlayIcon.style.display = "block";
     }
 
-    // Update UI with current song info
+    currentSong.pause(); // pause before changing src
+    currentSong.src = `${currFolder}/` + track;
+
+    if (index !== null) currentSongIndex = index;
+
+    const songItems = document.querySelectorAll(".songslist ul li");
+    if (songItems.length > currentSongIndex) {
+        currentlyPlayingLi = songItems[currentSongIndex];
+        updatePlayIcons();
+    }
+
+    if (!pause) {
+        try {
+            // Cancel any previous play promise
+            if (currentPlayPromise) {
+                await currentPlayPromise.catch(() => { });
+            }
+
+            // Safely try to play new song
+            currentPlayPromise = currentSong.play();
+            await currentPlayPromise;
+
+            play.src = "Images/Svg's/pause.svg";
+            updatePlayIcons();
+        } catch (err) {
+            if (err.name === "AbortError") {
+            } else {
+                console.error("Playback error:", err);
+            }
+        }
+    } else {
+        play.src = "Images/Svg's/play.svg";
+        updatePlayIcons();
+    }
+
     document.querySelector(".songinfo").innerHTML = decodeURI(track.replace(".mp3", ""));
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00";
 };
@@ -139,7 +196,7 @@ async function displayAlbums() {
 }
 
 /**
- * Main initialization function
+ * Main initialization function :
  */
 async function main() {
     // Initialize with default songs
@@ -151,18 +208,22 @@ async function main() {
     // Display all albums
     displayAlbums();
 
-    // Play/Pause button handler
+    // Play/Pause button handler :
+
     play.addEventListener("click", () => {
         if (currentSong.paused) {
             currentSong.play();
             play.src = "Images/Svg's/pause.svg";
+            updatePlayIcons(currentSongIndex);
         } else {
             currentSong.pause();
             play.src = "Images/Svg's/play.svg";
+            updatePlayIcons(currentSongIndex); // This will now show play icon
         }
     });
 
-    // Update progress bar during playback
+    // Update progress bar during playback :
+
     currentSong.addEventListener("timeupdate", () => {
         document.querySelector(".songtime").innerHTML =
             `${secondsToMinutesSeconds(currentSong.currentTime)} / ${secondsToMinutesSeconds(currentSong.duration)}`;
@@ -170,14 +231,16 @@ async function main() {
             (currentSong.currentTime / currentSong.duration) * 100 + "%";
     });
 
-    // Seekbar click handler
+    // Seekbar click handler :
+
     document.querySelector(".seekbar").addEventListener("click", e => {
         let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
         document.querySelector(".circle").style.left = percent + "%";
         currentSong.currentTime = (currentSong.duration * percent) / 100;
     });
 
-    // Mobile menu handlers
+    // Mobile menu handlers :
+
     document.querySelector(".hamburger").addEventListener("click", () => {
         document.querySelector(".left").style.left = "0";
     });
@@ -185,7 +248,8 @@ async function main() {
         document.querySelector(".left").style.left = "-120%";
     });
 
-    // Previous track handler
+    // Previous track handler :
+
     previous.addEventListener("click", () => {
         currentSong.pause();
         // Circular navigation through playlist
@@ -193,7 +257,8 @@ async function main() {
         playMusic(songs[currentSongIndex].filename, false, currentSongIndex);
     });
 
-    // Next track handler
+    // Next track handler :
+
     next.addEventListener("click", () => {
         currentSong.pause();
         // Circular navigation through playlist
@@ -201,22 +266,35 @@ async function main() {
         playMusic(songs[currentSongIndex].filename, false, currentSongIndex);
     });
 
-    // Auto-play next song when current ends
+    // Auto-play next song when current ends :
+
     currentSong.addEventListener("ended", () => {
         currentSongIndex = (currentSongIndex + 1) % songs.length;
         playMusic(songs[currentSongIndex].filename, false, currentSongIndex);
+        updatePlayIcons(currentSongIndex);
     });
 
-    // Keyboard controls
+    // Keyboard controls :
+
     document.body.onkeydown = e => {
         if (e.code === "Space") {
-            e.preventDefault(); // Prevent page scroll
-            play.click(); // Toggle play/pause
+            e.preventDefault();
+            play.click();
         }
-        if (e.code === "ArrowRight") next.click(); // Next track
-        if (e.code === "ArrowLeft") previous.click(); // Previous track
+        if (e.code === "ArrowRight") {
+            e.preventDefault();
+            currentSong.pause();
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            playMusic(songs[currentSongIndex].filename, false, currentSongIndex);
+        }
+        if (e.code === "ArrowLeft") {
+            e.preventDefault();
+            currentSong.pause();
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+            playMusic(songs[currentSongIndex].filename, false, currentSongIndex);
+        }
     };
 }
 
-// Start the application
+// Start the application :
 main();
