@@ -106,9 +106,7 @@ const playMusic = async (track, pause = false, index = null) => {
     }
 
     currentSong.pause(); // pause before changing src
-    // currentSong.src = `${currFolder}/` + track;
-    console.log("Loading song URL:", `${currFolder}/${encodeURIComponent(track)}`);
-    currentSong.src = `${currFolder}/${encodeURIComponent(track)}`;
+    currentSong.src = `${currFolder}/` + track;
 
     currentSong.src = `${currFolder}/` + encodeURIComponent(track);
 
